@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RepoListViewCell" rowHeight="112" id="MHZ-Ma-wDR" customClass="RepoListViewCell" customModule="CombineGithubMyList" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="350" height="112"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MHZ-Ma-wDR" id="HLE-6n-3PA">
+                <rect key="frame" x="0.0" y="0.0" width="350" height="112"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="96g-1T-gQZ">
+                        <rect key="frame" x="12" y="12" width="44.5" height="21"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QaR-p5-dRj" customClass="LanguageLabelView" customModule="CombineGithubMyList" customModuleProvider="target">
+                        <rect key="frame" x="12" y="41" width="240" height="12"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="12" id="EIn-Dp-91f"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="QaR-p5-dRj" firstAttribute="top" secondItem="96g-1T-gQZ" secondAttribute="bottom" constant="8" symbolic="YES" id="5N6-uu-R6i"/>
+                    <constraint firstItem="96g-1T-gQZ" firstAttribute="top" secondItem="HLE-6n-3PA" secondAttribute="top" constant="12" id="CDZ-h8-Nu7"/>
+                    <constraint firstItem="QaR-p5-dRj" firstAttribute="leading" secondItem="HLE-6n-3PA" secondAttribute="leading" constant="12" id="NNo-iO-csJ"/>
+                    <constraint firstItem="96g-1T-gQZ" firstAttribute="leading" secondItem="HLE-6n-3PA" secondAttribute="leading" constant="12" id="ZEY-QZ-8bI"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="languageLabel" destination="QaR-p5-dRj" id="a8d-J0-viJ"/>
+                <outlet property="titleLabel" destination="96g-1T-gQZ" id="8WR-ia-DlJ"/>
+            </connections>
+            <point key="canvasLocation" x="-133.33333333333334" y="-44.866071428571423"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
