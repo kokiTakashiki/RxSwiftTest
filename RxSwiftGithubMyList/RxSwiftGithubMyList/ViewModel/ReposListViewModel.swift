@@ -5,29 +5,29 @@
 //  Created by 武田孝騎 on 2022/02/16.
 //
 
-import Combine
+import RxSwift
 
 final class ReposListViewModel {
     private let fetcher = GithubFetcher()
-    @Published var reposData: [Repo] = []
-    @Published var isShowIndicator = true
-    @Published var languagesData: [Languages] = []
+    var reposData = BehaviorSubject<[Repo]>(value: [])
+    var isShowIndicator = BehaviorSubject<Bool>(value: true)
+    var languagesData = BehaviorSubject<[Languages]>(value: [])
 
     init() {
 //        self.fetcher.repos { (repos) in
 //            //sleep(1)
-//            self.reposData = repos
-//            self.isShowIndicator = false
+//            self.reposData.onNext(repos)
+//            self.isShowIndicator.onNext(false)
 //        }
-        reposData = mock().repos
-        isShowIndicator = false
+        reposData.onNext(mock().repos)
+        isShowIndicator.onNext(false)
     }
     
     func selectedRepoLanguagesData(repoName: String) {
         self.fetcher.languages(repoName: repoName) { (languages) in
             //sleep(1)
-            self.languagesData = [languages]
-            self.isShowIndicator = false
+            self.languagesData.onNext([languages])
+            self.isShowIndicator.onNext(false)
         }
     }
 }

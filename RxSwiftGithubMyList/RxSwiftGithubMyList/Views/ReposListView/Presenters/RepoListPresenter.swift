@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Combine
+import RxSwift
 
 @MainActor
 protocol RepoListEventHandler: AnyObject {
@@ -28,7 +28,7 @@ final class RepoListPresenter {
     //private let interactor:
     private let router: RepoListRouterInput
     
-    private var subscriptions = Set<AnyCancellable>()
+    private var subscriptions = DisposeBag()//Set<AnyCancellable>()
     private let viewModel = ReposListViewModel()
 
     // MARK: Computed Instance Properties
@@ -52,18 +52,30 @@ extension RepoListPresenter: RepoListEventHandler {
     func viewDidLoad() async {
         do {
             var repoList:[RepoListEntity] = []
-            viewModel.$reposData
-                .sink { repos in
-                    if !repos.isEmpty {
-                        repos.forEach({ repo in
-                            repoList.append(RepoListEntity(title: repo.name, language: repo.language ?? ""))
-                        })
-                        self.view.updateRepoList(repoList)
-                    }
-                }
-                .store(in: &subscriptions)
-            
-            //view.updateRepoList(repoList)
+//            viewModel.$reposData
+//                .sink { repos in
+//                    if !repos.isEmpty {
+//                        repos.forEach({ repo in
+//                            repoList.append(RepoListEntity(title: repo.name, language: repo.language ?? ""))
+//                        })
+//                        self.view.updateRepoList(repoList)
+//                    }
+//                }
+//                .store(in: &subscriptions)
+            viewModel.reposData
+                .subscribe(onNext: { elements in
+                                        if !elements.isEmpty {
+                                            elements.forEach({ element in
+                                               repoList.append(RepoListEntity(title: element.name, language: element.language ?? ""))
+                                           })
+                                            self.view.updateRepoList(repoList)
+                                       }
+                                    },
+                           onError: { _ in consoleManager.print("Observer: 1 - Event: onError") },
+                           onCompleted: { consoleManager.print("Observer: 1 - Event: completed") },
+                           onDisposed: { consoleManager.print("Observer: 1 - Event: disposed") })
+                .disposed(by: subscriptions)
+            viewModel.reposData.onCompleted()
         } catch {
             // TODO: エラーハンドリング
         }

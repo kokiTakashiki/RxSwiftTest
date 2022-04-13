@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import LocalConsole
 
 protocol RepoListUserInterface: AnyObject {
     func updateRepoList(_ demoList: [RepoListEntity])
@@ -21,8 +20,6 @@ final class ViewController: UIViewController {
     private var presenter: RepoListEventHandler!
     
     private var tableData: [RepoListEntity] = []
-    
-    let consoleManager = LCManager.shared
 
     // MARK: Computed Instance Properties
 
@@ -67,7 +64,6 @@ final class ViewController: UIViewController {
     
     @objc func debugPressed(_ sender: UIBarButtonItem) {
         consoleManager.isVisible.toggle()
-        consoleManager.clear()
     }
 }
 

@@ -7,6 +7,9 @@
 
 import UIKit
 
+import LocalConsole
+let consoleManager = LCManager.shared
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
