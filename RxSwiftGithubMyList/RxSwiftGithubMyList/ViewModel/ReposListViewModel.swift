@@ -31,3 +31,29 @@ final class ReposListViewModel {
         }
     }
 }
+
+// 比較用
+//final class ReposListViewModel {
+//    private let fetcher = GithubFetcher()
+//    @Published var reposData: [Repo] = []
+//    @Published var isShowIndicator = true
+//    @Published var languagesData: [Languages] = []
+//
+//    init() {
+//        self.fetcher.repos { (repos) in
+//            //sleep(1)
+//            self.reposData = repos
+//            self.isShowIndicator = false
+//        }
+//        reposData = mock().repos
+//        isShowIndicator = false
+//    }
+//
+//    func selectedRepoLanguagesData(repoName: String) {
+//        self.fetcher.languages(repoName: repoName) { (languages) in
+//            //sleep(1)
+//            self.languagesData = [languages]
+//            self.isShowIndicator = false
+//        }
+//    }
+//}
